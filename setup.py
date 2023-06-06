@@ -1,22 +1,25 @@
 import os
 import sys
 
-env_file_path = './.env'
+env_file_path = "./.env"
 fields = {
-    'ALPHA_VANTAGE_API_KEY': {'param': 'alpha_vantage_api', 'prompt': 'Alpha Vantage API Key: '}
+    "ALPHA_VANTAGE_API_KEY": {
+        "param": "alpha_vantage_api",
+        "prompt": "Alpha Vantage API Key: ",
+    }
 }
 
 
 def create_env_file():
-    with open(env_file_path, 'w') as env_file:
+    with open(env_file_path, "w") as env_file:
         for field, config in fields.items():
             env_file.write(f"{field}=''\n")
 
 
 def update_env_file(field_name, field_value):
-    with open(env_file_path, 'r') as env_file:
+    with open(env_file_path, "r") as env_file:
         env_lines = env_file.readlines()
-    with open(env_file_path, 'w') as env_file:
+    with open(env_file_path, "w") as env_file:
         for line in env_lines:
             if line.startswith(f"{field_name}="):
                 env_file.write(f"{field_name}='{field_value}'\n")
@@ -26,7 +29,7 @@ def update_env_file(field_name, field_value):
 
 def get_field_name(param):
     for field, config in fields.items():
-        if config['param'] == param:
+        if config["param"] == param:
             return field
     return None
 
@@ -39,16 +42,16 @@ def main():
         field_arg = sys.argv[1]
         field_name = get_field_name(field_arg)
         if field_name is not None:
-            field_value = input(fields[field_name]['prompt'])
+            field_value = input(fields[field_name]["prompt"])
             update_env_file(field_name, field_value)
         else:
             print(f"Field param '{field_arg}' not found in fields.")
     else:
-        with open(env_file_path, 'w') as env_file:
+        with open(env_file_path, "w") as env_file:
             for field, config in fields.items():
-                field_value = input(config['prompt'])
+                field_value = input(config["prompt"])
                 env_file.write(f"{field}='{field_value}'\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
