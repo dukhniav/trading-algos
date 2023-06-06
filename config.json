@@ -1,0 +1,11 @@
+{
+	"database": {
+	  "name": "sentiment_analysis.db",
+	  "path": "/path/to/database"
+	},
+	"api_key": "YOUR_API_KEY",
+	"other_setting": "some_value",
+	"old_news_day_cutoff": 7,
+	"tickers": ["AAPL", "GOOGL", "AMZN", "MSFT"]
+  }
+  
