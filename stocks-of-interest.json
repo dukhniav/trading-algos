@@ -1,0 +1,16 @@
+{
+    "tickers": [
+        {
+            "ticker": "AAPL"
+        },
+        {
+            "ticker": "GOOGL"
+        },
+        {
+            "ticker": "AMZN"
+        },
+        {
+            "ticker": "MSFT"
+        }
+    ]
+}

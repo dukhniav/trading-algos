@@ -1,0 +1,60 @@
+Define:
+- n: Number of periods for calculating pair statistics
+- z_score_threshold: Threshold for z-score to trigger trading signals
+- pair: A pair of correlated stocks or assets
+
+Algorithm:
+1. Loop:
+   Loop indefinitely:
+      a. Get historical prices for the pair:
+         historical_prices_pair = GetHistoricalPrices(pair, n)
+
+      b. Calculate pair statistics:
+         mean = CalculateMean(historical_prices_pair)
+         standard_deviation = CalculateStandardDeviation(historical_prices_pair)
+
+      c. Get the current prices for the pair:
+         current_prices_pair = GetCurrentPrices(pair)
+
+      d. Calculate z-scores:
+         z_scores = CalculateZScores(current_prices_pair, mean, standard_deviation)
+
+      e. Generate trading signals:
+         If z_scores > z_score_threshold:
+            GenerateSellSignal(pair)
+         Else if z_scores < -z_score_threshold:
+            GenerateBuySignal(pair)
+
+      f. Repeat the loop
+
+2. End
+
+Subroutine GetHistoricalPrices(pair, n):
+1. Retrieve historical price data for the past n periods for the given pair from the trading platform or data provider
+2. Return the historical prices as arrays for each stock or asset in the pair
+
+Subroutine CalculateMean(prices):
+1. Calculate the mean of prices
+2. Return the mean value
+
+Subroutine CalculateStandardDeviation(prices):
+1. Calculate the standard deviation of prices
+2. Return the standard deviation value
+
+Subroutine GetCurrentPrices(pair):
+1. Retrieve the current prices for each stock or asset in the given pair from the trading platform or data provider
+2. Return the current prices as an array for the pair
+
+Subroutine CalculateZScores(prices, mean, standard_deviation):
+1. Calculate the z-scores for each stock or asset in the pair using the current prices, mean, and standard deviation
+2. Return the z-scores as an array
+
+Subroutine GenerateBuySignal(pair):
+1. Execute the buy trade for the pair based on your trading platform's API or logic
+2. Add appropriate risk management measures (position sizing, stop-loss, etc.)
+3. Return
+
+Subroutine GenerateSellSignal(pair):
+1. Execute the sell trade for the pair based on your trading platform's API or logic
+2. Add appropriate risk management measures (position sizing, stop-loss, etc.)
+3. Return
