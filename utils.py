@@ -8,25 +8,24 @@ import pandas as pd
 
 
 class Utils:
-    def __init__(self) -> None:
-        self.alpha_vantage_api_key = None
-        self.tickers = None
+	def __init__(self) -> None:
+		self.config_path = 'config.json'
+		self.alpha_vantage_api_key = None
+		self.tickers = None
 
-    def setup(self):
-        # Load env variables
-        load_dotenv()
+		self.setup()
+		self.load_config()
 
-        # Load config
-        f = open("config.json")
-        config = json.load(f)
-        f.close()
+	def setup(self):
+		# Load env variables
+		load_dotenv()
 
-        # Load config variables
-        self.alpha_vantage_api_key = os.getenv("ALPHA_VANTAGE_API_KEY", "")
+		# Load config variables
+		self.alpha_vantage_api_key = os.getenv("ALPHA_VANTAGE_API_KEY", "")
 
-        # Access the configuration settings
-        db_name = config["database"]["name"]
-        db_path = config["database"]["path"]
-        api_key = config["api_key"]
-        other_setting = config["other_setting"]
-        tickers = config["tickers"]
+	def load_config(self):
+		with open(self.config_path, "r") as file:
+			config = json.load(file)
+
+		self.news_cutoff = config["old_news_day_cutoff"]
+		self.tickers = config["tickers"]
